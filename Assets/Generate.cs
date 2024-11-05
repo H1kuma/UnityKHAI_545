@@ -1,16 +1,16 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections.Generic;
 
 public class Generate : MonoBehaviour
 {
-    public GameObject[] terrainTiles; // Массив префабов для ландшафта
-    public Transform player;          // Ссылка на камеру или персонажа
-    public float tileSize = 10f;      // Размер плитки (можно настроить)
-    public float groundHeight = 0f;   // Высота, на которой будут генерироваться плитки
-    public int gridSize = 5;          // Размер сетки (количество плиток по осям)
+    public GameObject[] terrainTiles; // РњР°СЃСЃРёРІ РїСЂРµС„Р°Р±РѕРІ РґР»СЏ Р»Р°РЅРґС€Р°С„С‚Р°
+    public Transform player;          // РЎСЃС‹Р»РєР° РЅР° РєР°РјРµСЂСѓ РёР»Рё РїРµСЂСЃРѕРЅР°Р¶Р°
+    public float tileSize = 10f;      // Р Р°Р·РјРµСЂ РїР»РёС‚РєРё (РјРѕР¶РЅРѕ РЅР°СЃС‚СЂРѕРёС‚СЊ)
+    public float groundHeight = 0f;   // Р’С‹СЃРѕС‚Р°, РЅР° РєРѕС‚РѕСЂРѕР№ Р±СѓРґСѓС‚ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊСЃСЏ РїР»РёС‚РєРё
+    public int gridSize = 5;          // Р Р°Р·РјРµСЂ СЃРµС‚РєРё (РєРѕР»РёС‡РµСЃС‚РІРѕ РїР»РёС‚РѕРє РїРѕ РѕСЃСЏРј)
 
-    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>(); // Множество занятых позиций плиток
-    private Vector3 lastPlayerPosition; // Для отслеживания движения игрока
+    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>(); // РњРЅРѕР¶РµСЃС‚РІРѕ Р·Р°РЅСЏС‚С‹С… РїРѕР·РёС†РёР№ РїР»РёС‚РѕРє
+    private Vector3 lastPlayerPosition; // Р”Р»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ РґРІРёР¶РµРЅРёСЏ РёРіСЂРѕРєР°
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class Generate : MonoBehaviour
 
     void GenerateInitialTiles()
     {
-        // Генерация плиток в сетке вокруг начальной позиции игрока
+        // Р“РµРЅРµСЂР°С†РёСЏ РїР»РёС‚РѕРє РІ СЃРµС‚РєРµ РІРѕРєСЂСѓРі РЅР°С‡Р°Р»СЊРЅРѕР№ РїРѕР·РёС†РёРё РёРіСЂРѕРєР°
         for (int x = -gridSize; x <= gridSize; x++)
         {
             for (int z = -gridSize; z <= gridSize; z++)
@@ -42,7 +42,7 @@ public class Generate : MonoBehaviour
 
     void GenerateSurroundingTiles()
     {
-        // Проверка и генерация плиток по сетке вокруг игрока
+        // РџСЂРѕРІРµСЂРєР° Рё РіРµРЅРµСЂР°С†РёСЏ РїР»РёС‚РѕРє РїРѕ СЃРµС‚РєРµ РІРѕРєСЂСѓРі РёРіСЂРѕРєР°
         for (int x = -gridSize; x <= gridSize; x++)
         {
             for (int z = -gridSize; z <= gridSize; z++)
@@ -51,7 +51,7 @@ public class Generate : MonoBehaviour
                                                 groundHeight,
                                                 Mathf.Round((player.position.z + z * tileSize) / tileSize) * tileSize);
 
-                // Проверка, существует ли уже плитка на этой позиции
+                // РџСЂРѕРІРµСЂРєР°, СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё СѓР¶Рµ РїР»РёС‚РєР° РЅР° СЌС‚РѕР№ РїРѕР·РёС†РёРё
                 if (!occupiedPositions.Contains(spawnPos))
                 {
                     SpawnTile(spawnPos);
@@ -63,6 +63,6 @@ public class Generate : MonoBehaviour
     void SpawnTile(Vector3 position)
     {
         GameObject tile = Instantiate(terrainTiles[Random.Range(0, terrainTiles.Length)], position, Quaternion.identity);
-        occupiedPositions.Add(position); // Добавляем позицию в занятые
+        occupiedPositions.Add(position); // Р”РѕР±Р°РІР»СЏРµРј РїРѕР·РёС†РёСЋ РІ Р·Р°РЅСЏС‚С‹Рµ
     }
 }
