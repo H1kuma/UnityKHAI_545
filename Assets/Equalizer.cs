@@ -20,7 +20,7 @@ public class Equalizer : MonoBehaviour
         for (int i = 0; i < numberOfCubes; i++)
         {
             cubes[i] = Instantiate(cubePrefab, transform);
-            cubes[i].transform.position = new Vector3(i * cubSize, 0, 0); // Adjust spacing
+            cubes[i].transform.position = new Vector3(i * cubSize, 20, 0); // Adjust spacing
         }
     }
 
